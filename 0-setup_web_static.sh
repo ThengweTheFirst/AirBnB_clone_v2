@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
 # Bash script that sets up web servers for the deployment of web_static
-sudo apt update
-sudo apt install nginx
-sudo ufw allow 'Nginx HTTP'
+sudo apt-get update
+sudo apt-get install nginx
 
-sudo mkdir /data/
-sudo mkdir /data/web_static/
-sudo mkdir /data/web_static/releases/
-sudo mkdir /data/web_static/shared/
-sudo mkdir /data/web_static/releases/test/
-sudo touch /data/web_static/releases/test/index.html
-sudo echo "<html>
+sudo mkdir -p /data/
+sudo mkdir -p /data/web_static/
+sudo mkdir -p /data/web_static/releases/
+sudo mkdir -p /data/web_static/shared/
+sudo mkdir -p /data/web_static/releases/test/
+echo "Hello World" | sudo tee /data/web_static/releases/test/index.html
+echo "<html>
   <head>
   </head>
   <body>
@@ -18,7 +17,7 @@ sudo echo "<html>
   </body>
 </html>" | sudo tee /data/web_static/releases/test/index.html
 
-sudo ln -s -f /data/web_static/releases/test/ /data/web_static/current
+sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 sudo chown -R ubuntu:ubuntu /data/
 
